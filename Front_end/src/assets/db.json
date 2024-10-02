@@ -1,0 +1,75 @@
+{
+  "brands": [
+    {
+      "id": "4d91",
+      "bname": "Samsung"
+    },
+    {
+      "id": "150a",
+      "bname": "Xiaomo Mobile"
+    },
+    {
+      "id": "e56a",
+      "bname": "Motorola"
+    },
+    {
+      "id": "13bc",
+      "bname": "Vivo"
+    },
+    {
+      "id": "08ef",
+      "bname": "Oppo"
+    },
+    {
+      "id": "232c",
+      "bname": "OnePlus"
+    },
+    {
+      "id": "05b6",
+      "bname": "Apple"
+    },
+    {
+      "id": "cea7",
+      "bname": "LG Mobile"
+    },
+    {
+      "id": "4cc4",
+      "bname": "HTC"
+    },
+    {
+      "id": "1612",
+      "bname": "Realme"
+    }
+  ],
+  "products": [
+    {
+      "id": "f9c1",
+      "name": "Galaxy Z Fold 2",
+      "details": "5G 256 GB (Mystic Bronze, Mystic Black, 12 GB RAM)",
+      "brandId": "4d91",
+      "purchasePrice": "30000",
+      "salePrice": "32999",
+      "availabelQuantity": 9
+    },
+    {
+      "id": "eeff",
+      "name": " Galaxy M02",
+      "details": "Color Blue 32 GB 2 GB RAM",
+      "brandId": "4d91",
+      "purchasePrice": "22000",
+      "salePrice": "24999",
+      "availabelQuantity": "17"
+    }
+  ],
+  "orders": [
+    {
+      "id": "c034",
+      "orderNo": "1",
+      "productId": "f9c1",
+      "quantity": "1",
+      "salePrice": "32999",
+      "discount": "1000",
+      "totalAmount": 31999
+    }
+  ]
+}

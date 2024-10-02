@@ -26,8 +26,6 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int brandId;
-	
-	@NotNull(message = "Brand name is required.")
 	private String brandName;
 	
 	@OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)

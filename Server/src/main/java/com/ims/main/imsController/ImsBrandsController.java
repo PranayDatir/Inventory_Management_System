@@ -28,10 +28,9 @@ public class ImsBrandsController {
 	ImsBrandServicei imsBrandService;
 
 	@PostMapping("/saveBrands")
-	public ResponseEntity<Brand> saveBrand(@Valid @RequestBody Brand brand) {
+	public ResponseEntity<Brand> saveBrand(@RequestBody Brand brand) {
 		
-//		Brand data = imsBrandService.saveBrand(brand);
-//			Response response = new Response("Success.", false, data);
+
 			return new ResponseEntity<>(imsBrandService.saveBrand(brand), HttpStatus.CREATED);
 		
 	}

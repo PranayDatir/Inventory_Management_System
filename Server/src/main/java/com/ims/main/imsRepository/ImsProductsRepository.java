@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ims.main.model.Product;
 
 @Repository
-public interface ImsProductsRepository {
+public interface ImsProductsRepository extends CrudRepository<Product, Integer>{
 
 }

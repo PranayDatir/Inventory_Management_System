@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ims.main.model.Order;
 
 @Repository
-public interface ImsOrderRepository {
+public interface ImsOrderRepository extends CrudRepository<Order ,Integer> {
 
 }

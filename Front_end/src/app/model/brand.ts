@@ -1,4 +1,4 @@
 export class Brand {
-    id?:number ;
-    bname: string;
+    brandId?:number ;
+    brandName: string;
 }

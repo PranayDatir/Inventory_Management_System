@@ -11,26 +11,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BrandFormComponent implements OnInit{
   constructor(private brandService : BrandService,private router:Router, private activeRoute: ActivatedRoute){}
   brand:Brand;
+  brandName:string;
+  
   ngOnInit(): void {  
-   const id = this.activeRoute.snapshot.params['id'];
-   console.log(id);
+   const brandId = this.activeRoute.snapshot.params['id'];
+   console.log(brandId);
    
-   if(id){
-    this.brandService.getSingleBrand(id).subscribe((result) => {
+   if(brandId){
+    this.brandService.getSingleBrand(brandId).subscribe((result) => {
+      console.log("RESULT",result);
       this.brand = result;
-      this.bname = result.bname;
+      this.brandName = result.brandName;
+      
     })
    }
   }
-  bname:string;
+ 
   addBrand(){
-    console.log(this.bname);
-    if(!this.bname){
+    console.log(this.brandName);
+    if(!this.brandName){
       alert("Please enter brand name")
       return;
     }
     let brand : Brand={
-      bname: this.bname
+      brandName: this.brandName
     }
     this.brandService.addBrand(brand).subscribe(result=>{
       alert("Brand added Successfully");
@@ -38,14 +42,14 @@ export class BrandFormComponent implements OnInit{
     })
   }
   updateBrand(){
-    console.log(this.bname);
-    if(!this.bname){
+    console.log(this.brandName);
+    if(!this.brandName){
       alert("Please enter brand name")
       return;
     }
     let brand : Brand={
-      id:this.brand.id,
-      bname: this.bname
+      brandId:this.brand.brandId,
+      brandName: this.brandName
     }
     this.brandService.updateBrand(brand).subscribe(result =>{
       alert("Brand updated Successfully");

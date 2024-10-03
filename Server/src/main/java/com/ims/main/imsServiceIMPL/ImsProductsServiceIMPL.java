@@ -1,5 +1,8 @@
 package com.ims.main.imsServiceIMPL;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,18 @@ public class ImsProductsServiceIMPL implements ImsProductsServicei{
 	public Product saveProduct(Product product) {
 		Product pr = imsproductrepo.save(product);
 		return pr;
+	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		// TODO Auto-generated method stub
+		return 	(List<Product>) imsproductrepo.findAll();
+	}
+
+	@Override
+	public Optional<Product> getProduct(int id) {
+		// TODO Auto-generated method stub
+		return imsproductrepo.findById(id);
 	}
 
 }

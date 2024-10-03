@@ -23,7 +23,7 @@ export class BrandService {
   }
 
   updateBrand(brand:Brand){
-   return this.http.put<Brand>(environment.apiUrl+'/brands/'+brand.id,brand)
+   return this.http.put<Brand>(environment.apiUrl+'/brands/'+brand.brandId,brand)
   }
 
   deleteBrand(brandId: string){

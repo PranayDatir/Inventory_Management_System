@@ -31,7 +31,8 @@ public class Product {
     private float purchasePrice;
     private float salePrice;
     private int availabelQuantity;
-
+ 
+    
     @ManyToOne
     @JoinColumn(name = "brandId")
     private Brand brand;

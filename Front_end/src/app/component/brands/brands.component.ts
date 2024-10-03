@@ -24,8 +24,8 @@ export class BrandsComponent implements OnInit{
     this.brand.getBrand().subscribe((result :any )=> this.initTable(result));
   }
 
-  initTable(data: Brand[]){
-    this.dataSource = new MatTableDataSource(data);
+  initTable(data: any){
+    this.dataSource = new MatTableDataSource(data.data);
     this.dataSource.paginator=this.pagination;
     this.dataSource.sort=this.sort;
   }

@@ -38,7 +38,7 @@ public class ImsBrandsController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/brand")
+	@GetMapping("/brands")
 	public ResponseEntity<Response> getBrands() {
 		List<Brand> data = imsBrandService.getAllBrands();
 		Response response = new Response();
@@ -48,7 +48,7 @@ public class ImsBrandsController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/brand/{id}")
+	@GetMapping("/brands/{id}")
 	public ResponseEntity<Response> getSingleBrands(@PathVariable int id) {
 		Optional<Brand> data = imsBrandService.getSingleBrand(id);
 		Response response = new Response();
@@ -58,7 +58,7 @@ public class ImsBrandsController {
 		return ResponseEntity.ok(response);
 	}
 
-	@PutMapping("/brand/{id}")
+	@PutMapping("/brands/{id}")
 	public ResponseEntity<Response> updateBrands(@RequestBody Brand brand, @PathVariable int id) {
 
 		if (brand.getBrandId() == id) {
@@ -76,7 +76,7 @@ public class ImsBrandsController {
 		}
 	}
 
-	@DeleteMapping("/brand/{id}")
+	@DeleteMapping("/brands/{id}")
 	public ResponseEntity<Response> deleteBrands(@PathVariable int id) {
 
 		imsBrandService.deleteBrand(id);

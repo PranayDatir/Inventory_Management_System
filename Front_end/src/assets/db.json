@@ -37,14 +37,14 @@
       "bname": "HTC"
     },
     {
-      "id": "1612",
-      "bname": "Realme"
+         },
+    {
+      "id": "21b1",
+      "brandName": "Apple"
     }
   ],
   "products": [
     {
-      "id": "f9c1",
-      "id": "f9c1",
       "id": "f9c1",
       "name": "Galaxy Z Fold 2",
       "details": "5G 256 GB (Mystic Bronze, Mystic Black, 12 GB RAM)",

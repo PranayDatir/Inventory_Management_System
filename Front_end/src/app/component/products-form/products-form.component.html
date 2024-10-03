@@ -25,7 +25,7 @@
                 <mat-form-field class="w-full">
                     <mat-select type="text" matInput formControlName="brandId">
                         @for (item of brands; track $index) {
-                        <mat-option [value]="item.id">{{item.bname}}</mat-option>
+                        <mat-option [value]="item.brandId">{{item.brandName}}</mat-option>
                         }
                     </mat-select>
                 </mat-form-field>

@@ -29,19 +29,19 @@ public class ImsBrandsController {
 
 	@PostMapping("/brands")
 	public ResponseEntity<Response> saveBrand(@RequestBody Brand brand) {
-				Brand data = imsBrandService.saveBrand(brand);
-				Response response =new Response();
-				response.setData(data);
-				response.setMessage("Success");
-				response.setError(false);
-				
-			return ResponseEntity.ok(response);	
+		Brand data = imsBrandService.saveBrand(brand);
+		Response response = new Response();
+		response.setData(data);
+		response.setMessage("Success");
+		response.setError(false);
+
+		return ResponseEntity.ok(response);
 	}
-	
-	@GetMapping("/brands")
+
+	@GetMapping("/brand")
 	public ResponseEntity<Response> getBrands() {
 		List<Brand> data = imsBrandService.getAllBrands();
-		Response response =new Response();
+		Response response = new Response();
 		response.setData(data);
 		response.setMessage("Success");
 		response.setError(false);
@@ -51,7 +51,7 @@ public class ImsBrandsController {
 	@GetMapping("/brand/{id}")
 	public ResponseEntity<Response> getSingleBrands(@PathVariable int id) {
 		Optional<Brand> data = imsBrandService.getSingleBrand(id);
-		Response response =new Response();
+		Response response = new Response();
 		response.setData(data);
 		response.setMessage("Success");
 		response.setError(false);
@@ -59,17 +59,17 @@ public class ImsBrandsController {
 	}
 
 	@PutMapping("/brand/{id}")
-	public ResponseEntity<Response> updateBrands(@RequestBody Brand b, @PathVariable int id) {
+	public ResponseEntity<Response> updateBrands(@RequestBody Brand brand, @PathVariable int id) {
 
-		if (b.getBrandId() == id) {
-			Brand data = imsBrandService.saveBrand(b);
-			Response response =new Response();
+		if (brand.getBrandId() == id) {
+			Brand data = imsBrandService.saveBrand(brand);
+			Response response = new Response();
 			response.setData(data);
-			response.setMessage("Success");
+			response.setMessage("Success.");
 			response.setError(false);
 			return ResponseEntity.ok(response);
 		} else {
-			Response response =new Response();
+			Response response = new Response();
 			response.setMessage("Brand Id is not Found.");
 			response.setError(true);
 			return ResponseEntity.ok(response);
@@ -80,7 +80,7 @@ public class ImsBrandsController {
 	public ResponseEntity<Response> deleteBrands(@PathVariable int id) {
 
 		imsBrandService.deleteBrand(id);
-		Response response =new Response();
+		Response response = new Response();
 		response.setMessage("Brand Id is not Found.");
 		response.setError(false);
 		return ResponseEntity.ok(response);

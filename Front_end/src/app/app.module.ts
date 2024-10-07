@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { OrderComponent } from './component/order/order.component';
 import { OrderFormComponent } from './component/order-form/order-form.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { OrderFormComponent } from './component/order-form/order-form.component'
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     provideAnimationsAsync()

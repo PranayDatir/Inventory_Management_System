@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Brand } from '../../model/brand';
 import { BrandService } from '../../service/brand.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiResponse } from '../../Shared/ApiResponse';
+import { ToasterService } from '../../service/toaster.service';
 
 @Component({
   selector: 'app-brand-form',
@@ -9,7 +11,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './brand-form.component.css'
 })
 export class BrandFormComponent implements OnInit{
-  constructor(private brandService : BrandService,private router:Router, private activeRoute: ActivatedRoute){}
+   
+  toastr = inject(ToasterService);
+  brandService = inject(BrandService);
+  router = inject(Router);
+  activeRoute = inject(ActivatedRoute);
+  
   brand:Brand;
   brandName:string;
   
@@ -18,42 +25,57 @@ export class BrandFormComponent implements OnInit{
    console.log(brandId);
    
    if(brandId){
-    this.brandService.getSingleBrand(brandId).subscribe((result) => {
-      console.log("RESULT",result);
-      this.brand = result;
-      this.brandName = result.brandName;
-      
-    })
+    this.brandService.getSingleBrand(brandId).subscribe({
+      next: (response: ApiResponse<Brand>) => {
+      console.log("RESULT",response);
+      this.toastr.showNotification(response.message,'Okay');
+      this.brand = response.data;
+      this.brandName = response.data.brandName;
+    },
+    error: ()=>{
+
+    },
+    complete: ()=>{
+
+    }
+    });
    }
   }
  
   addBrand(){
     console.log(this.brandName);
     if(!this.brandName){
-      alert("Please enter brand name")
+      this.toastr.showNotification("Please enter brand name",'Okay');
       return;
     }
     let brand : Brand={
       brandName: this.brandName
     }
-    this.brandService.addBrand(brand).subscribe(result=>{
-      alert("Brand added Successfully");
+    this.brandService.addBrand(brand).subscribe({
+     next: (response: ApiResponse<Brand>)=>{
+      this.toastr.showNotification(response.message,'Okay');
       this.router.navigateByUrl("/brand");
-    })
   }
+  });
+}
+
   updateBrand(){
     console.log(this.brandName);
     if(!this.brandName){
-      alert("Please enter brand name")
+      this.toastr.showNotification("Please enter brand name",'Okay');
       return;
     }
     let brand : Brand={
       brandId:this.brand.brandId,
       brandName: this.brandName
     }
-    this.brandService.updateBrand(brand).subscribe(result =>{
-      alert("Brand updated Successfully");
-      this.router.navigateByUrl("/brand");
+    this.brandService.updateBrand(brand).subscribe({
+      next: (response: ApiResponse<Brand>)=>{
+        console.log("RESPONSE-->",response.message);
+        this.toastr.showNotification(response.message,'Okay');
+        this.router.navigateByUrl("/brand");
+      }
     })
   }
 }
+

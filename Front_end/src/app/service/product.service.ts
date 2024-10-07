@@ -11,22 +11,22 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    return this.http.get<Products[]>("http://localhost:3000/products");
+    return this.http.get(environment.apiUrl+"/product");
   }
 
   saveProducts(product: Products) {
-    return this.http.post<Products>(environment.apiUrl + "/products", product);
+    return this.http.post(environment.apiUrl + "/product", product);
   }
 
-  getSingleProduct(id: string) {
-    return this.http.get<Products>(environment.apiUrl + '/products/' + id);
+  getSingleProduct(id: number) {
+    return this.http.get(environment.apiUrl + '/product/' + id);
   }
 
   updateProduct(id: any, product: Products) {
-    return this.http.put<Products>(environment.apiUrl + '/products/' + id, product)
+    return this.http.put(environment.apiUrl + '/product/' + id, product)
   }
 
   deleteProduct(id : string){
-    return this.http.delete<Products>(environment.apiUrl + '/products/' + id)
+    return this.http.delete(environment.apiUrl + '/product/' + id)
   }
 }

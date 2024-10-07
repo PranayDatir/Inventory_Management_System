@@ -2,6 +2,8 @@ package com.ims.main.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,20 +26,22 @@ public class Product {
 	
 
 	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     private String productName;
     private String productDetails;
     private float purchasePrice;
     private float salePrice;
     private int availabelQuantity;
- 
     
-    @ManyToOne
-    @JoinColumn(name = "brandId")
-    private Brand brand;
+    private String brandName;
     
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<Order> orders;
+//    @ManyToOne
+//    @JoinColumn(name = "brandId")
+//    @JsonBackReference
+//    private Brand brand;
+//    
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//	private List<Order> orders;
 
 }

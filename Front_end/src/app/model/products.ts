@@ -1,9 +1,10 @@
 export class Products {
-    id:number;
-    name:string;
-    details:string;
-    brandId:string;
+    productId:number;
+    productName:string;
+    productDetails:string;
+    brandName:string;
     purchasePrice:number;
     salePrice: number | null;
     availabelQuantity: number;
+
 }

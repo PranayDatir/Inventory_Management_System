@@ -32,7 +32,16 @@ public class ImsProductsServiceIMPL implements ImsProductsServicei{
 	@Override
 	public Optional<Product> getProduct(int id) {
 		// TODO Auto-generated method stub
+		System.out.println("SERVICE");
 		return imsproductrepo.findById(id);
 	}
+
+	@Override
+	public void deleteProduct(int id) {
+		// TODO Auto-generated method stub
+		imsproductrepo.deleteById(id);
+	}
+	
+	
 
 }

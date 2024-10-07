@@ -15,4 +15,6 @@ public class Response {
 	private String message;
 	private boolean error;
 	private Object data;
+	
+//	public Response = new Response(); 
 }

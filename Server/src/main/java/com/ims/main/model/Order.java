@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Order {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	private int orderNo;
 	private int quantity;
@@ -29,7 +29,9 @@ public class Order {
 	private float discount;
 	private double totalAmount;
 	
-    @ManyToOne
-    @JoinColumn
-    private Product product;
+	 private String productName;
+	
+//    @ManyToOne
+////    @JoinColumn
+//    private Product product;
 }

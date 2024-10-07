@@ -13,4 +13,6 @@ public interface ImsProductsServicei {
 
 	public Optional<Product> getProduct(int id);
 
+	public void deleteProduct(int id);
+
 }

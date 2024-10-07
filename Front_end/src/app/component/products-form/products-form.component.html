@@ -9,23 +9,23 @@
             <div class="w-full">
                 <mat-label>Product Name</mat-label>
                 <mat-form-field class="w-full">
-                    <input type="text" matInput formControlName="name" />
+                    <input type="text" matInput formControlName="productName" />
                 </mat-form-field>
             </div>
 
             <div class="w-full">
                 <mat-label>Product Details:</mat-label>
                 <mat-form-field class="w-full">
-                    <input type="text" matInput formControlName="details" />
+                    <input type="text" matInput formControlName="productDetails" />
                 </mat-form-field>
             </div>
 
             <div class="w-full">
                 <mat-label>Brand Name:</mat-label>
                 <mat-form-field class="w-full">
-                    <mat-select type="text" matInput formControlName="brandId">
+                    <mat-select type="text" matInput formControlName="brandName">
                         @for (item of brands; track $index) {
-                        <mat-option [value]="item.brandId">{{item.brandName}}</mat-option>
+                        <mat-option [value]="item.brandName">{{item.brandName}}</mat-option>
                         }
                     </mat-select>
                 </mat-form-field>
@@ -60,7 +60,6 @@
             @else{
                 <button mat-raised-button color="primary" (click)="onSubmit()">Add</button>
             }
-            
         </div>
     </form>
 </div>

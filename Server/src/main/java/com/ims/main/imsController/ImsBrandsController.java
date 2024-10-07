@@ -29,60 +29,94 @@ public class ImsBrandsController {
 
 	@PostMapping("/brands")
 	public ResponseEntity<Response> saveBrand(@RequestBody Brand brand) {
-		Brand data = imsBrandService.saveBrand(brand);
-		Response response = new Response();
-		response.setData(data);
-		response.setMessage("Success");
-		response.setError(false);
+		try {
+			if (brand.getBrandName().isEmpty()) {
+				Response response = new Response("Brand name is required.", true, null);
+				return ResponseEntity.status(200).body(response);
+			}
 
-		return ResponseEntity.ok(response);
+			Brand data = imsBrandService.saveBrand(brand);
+			Response response = new Response("Success", false, data);
+			return ResponseEntity.status(200).body(response);
+		} catch (Exception e) {
+			Response response = new Response(e.getMessage(), true, null);
+			return ResponseEntity.status(200).body(response);
+		}
 	}
 
 	@GetMapping("/brands")
 	public ResponseEntity<Response> getBrands() {
-		List<Brand> data = imsBrandService.getAllBrands();
-		Response response = new Response();
-		response.setData(data);
-		response.setMessage("Success");
-		response.setError(false);
-		return ResponseEntity.ok(response);
+		try {
+			List<Brand> data = imsBrandService.getAllBrands();
+			Response response = new Response("success", false, data);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			Response response = new Response(e.getMessage(), true, null);
+			return ResponseEntity.status(200).body(response);
+		}
 	}
 
 	@GetMapping("/brands/{id}")
 	public ResponseEntity<Response> getSingleBrands(@PathVariable int id) {
-		Optional<Brand> data = imsBrandService.getSingleBrand(id);
-		Response response = new Response();
-		response.setData(data);
-		response.setMessage("Success");
-		response.setError(false);
-		return ResponseEntity.ok(response);
+		try {
+			Optional<Brand> data = imsBrandService.getSingleBrand(id);
+			if (data.isEmpty()) {
+				Response response = new Response("Brand not found.", true, data);
+				return ResponseEntity.status(404).body(response);
+			}
+			Response response = new Response("Success", false, data);
+			return ResponseEntity.status(200).body(response);
+		} catch (Exception e) {
+			Response response = new Response(e.getMessage(), true, null);
+			return ResponseEntity.status(500).body(response);
+		}
 	}
 
 	@PutMapping("/brands/{id}")
 	public ResponseEntity<Response> updateBrands(@RequestBody Brand brand, @PathVariable int id) {
+		try {
+			Optional<Brand> brandData = imsBrandService.getSingleBrand(id);
 
-		if (brand.getBrandId() == id) {
-			Brand data = imsBrandService.saveBrand(brand);
-			Response response = new Response();
-			response.setData(data);
-			response.setMessage("Success.");
-			response.setError(false);
-			return ResponseEntity.ok(response);
-		} else {
-			Response response = new Response();
-			response.setMessage("Brand Id is not Found.");
-			response.setError(true);
-			return ResponseEntity.ok(response);
+			if (!brandData.isPresent()) {
+				Response response = new Response("Brand Not Found.", true, null);
+				return ResponseEntity.status(404).body(response);
+			}
+
+			if (brand.getBrandName().isEmpty()) {
+				Response response = new Response("Brand name is required.", true, null);
+				return ResponseEntity.status(200).body(response);
+			}
+
+			Brand existingBrand = brandData.get();
+			existingBrand.setBrandName(brand.getBrandName());
+
+			Brand data = imsBrandService.saveBrand(existingBrand);
+			Response response = new Response("Brand Update successfully.", false, data);
+			return ResponseEntity.status(200).body(response);
+
+		} catch (Exception e) {
+			Response response = new Response(e.getMessage(), true, null);
+			return ResponseEntity.status(500).body(response);
 		}
 	}
 
 	@DeleteMapping("/brands/{id}")
 	public ResponseEntity<Response> deleteBrands(@PathVariable int id) {
 
-		imsBrandService.deleteBrand(id);
-		Response response = new Response();
-		response.setMessage("Brand Id is not Found.");
-		response.setError(false);
-		return ResponseEntity.ok(response);
+		try {
+			
+			Optional<Brand> brandData = imsBrandService.getSingleBrand(id);
+
+			if (!brandData.isPresent()) {
+				Response response = new Response("Brand Not Found.", true, null);
+				return ResponseEntity.status(404).body(response);
+			}
+				imsBrandService.deleteBrand(id);
+				Response response = new Response("Brand Deleted Successfully.", false, null);
+				return ResponseEntity.status(200).body(response);
+		} catch (Exception e) {
+			Response response = new Response(e.getMessage(), true, null);
+			return ResponseEntity.status(500).body(response);
+		}
 	}
 }

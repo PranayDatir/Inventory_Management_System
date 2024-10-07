@@ -11,22 +11,22 @@ export class BrandService {
   constructor(private http: HttpClient) { }
 
   getBrand() {
-    return this.http.get<Brand>(environment.apiUrl+"/brands");
+    return this.http.get(environment.apiUrl+"/brands");
   }
 
   addBrand(brand: Brand) {
-    return this.http.post<Brand>(environment.apiUrl+"/brands",brand);
+    return this.http.post(environment.apiUrl+"/brands",brand);
   }
 
-  getSingleBrand(brandId: string) {
-    return this.http.get<Brand>(environment.apiUrl+"/brands/"+brandId);
+  getSingleBrand(brandId: number) {
+    return this.http.get(environment.apiUrl+"/brands/"+brandId);
   }
 
   updateBrand(brand:Brand){
-   return this.http.put<Brand>(environment.apiUrl+'/brands/'+brand.brandId,brand)
+   return this.http.put(environment.apiUrl+'/brands/'+brand.brandId,brand)
   }
 
-  deleteBrand(brandId: string){
-    return this.http.delete<Brand>(environment.apiUrl+'/brands/'+brandId);
+  deleteBrand(brandId: number){
+    return this.http.delete(environment.apiUrl+'/brands/'+brandId);
   }
 }

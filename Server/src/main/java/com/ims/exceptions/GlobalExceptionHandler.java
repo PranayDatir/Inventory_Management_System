@@ -16,16 +16,14 @@ import com.ims.main.model.Response;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap();
-        ex.getBindingResult().getFieldErrors().forEach(error ->{
-//        	String fieldName = ((FieldError)error).getField();
-//        	String message = error.getDefaultMessage();
-        	errors.put(error.getField(), error.getDefaultMessage());
-        });
-        return (ResponseEntity<Map<String, String>>) errors;
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+            errors.put(error.getField(), error.getDefaultMessage()));
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
 }

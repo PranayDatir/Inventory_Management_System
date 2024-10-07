@@ -29,9 +29,9 @@ public class Order {
 	private float discount;
 	private double totalAmount;
 	
-	 private String productName;
+	private String productName;
 	
 //    @ManyToOne
-////    @JoinColumn
+//    @JoinColumn
 //    private Product product;
 }

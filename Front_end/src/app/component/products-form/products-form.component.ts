@@ -43,7 +43,6 @@ export class ProductsFormComponent implements OnInit {
 
     if (id) {
       this.getSingleProduct(id);
-      this.productForm.patchValue(this.product);
     }
     
   }
@@ -53,8 +52,16 @@ export class ProductsFormComponent implements OnInit {
       next: (response: ApiResponse<Products>)=>{
         this.product = response.data;
         console.log(this.product);
+        this.productForm.patchValue(this.product);
+      },
+      error: ()=>{
+
+      },
+      complete: ()=>{
+
       }
-    })
+      
+    });
   }
 
 
@@ -76,7 +83,6 @@ export class ProductsFormComponent implements OnInit {
   onSubmit() {
     console.log(this.productForm.value);
     if (this.productForm.invalid) {
-      alert("Please provide all details....");
       this.toastr.showNotification("Please provide all details....",'Okay');
       return;
     }
@@ -97,12 +103,21 @@ export class ProductsFormComponent implements OnInit {
   //Update Product 
   updateProduct() {
     if (this.productForm.invalid) {
-      alert("Please provide all details....");
+      this.toastr.showNotification("Please provide all details....",'Okay');
       return;
     }
-    this.productService.updateProduct(this.product.productId, this.productForm.value).subscribe(() => {
-      alert("Your Product is Updated Successfully....");
-      this.router.navigateByUrl("/products");
-    })
+    this.productService.updateProduct(this.product.productId, this.productForm.value)
+    .subscribe({
+      next: (response: ApiResponse<Products>) => {
+        this.toastr.showNotification(response.message,'Okay');
+        this.router.navigateByUrl("/products");
+      },
+      error: ()=>{
+
+      },
+      complete: ()=>{
+
+      }
+    });
   }
 }

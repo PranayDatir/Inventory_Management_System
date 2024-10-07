@@ -1,9 +1,9 @@
 export class Orders {
-    id?: string;
+    orderId: number;
     orderNo: number;
-    productId: string;
-    quantity: number | null;
-    salePrice: number | null;
-    discount: number | null;
-    totalAmount: number | null;
+    quantity: number ;
+    salePrice: number ;
+    productName: string;
+    discount: number ;
+    totalAmount: number;
 }

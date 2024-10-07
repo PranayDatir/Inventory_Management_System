@@ -55,10 +55,10 @@
 
         <div class="w-full flex justify-center">
             @if (product) {
-                <button mat-raised-button color="primary" (click)="updateProduct()">Update</button>
+                <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="updateProduct()">Update</button>
             }
             @else{
-                <button mat-raised-button color="primary" (click)="onSubmit()">Add</button>
+                <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="onSubmit()">Add</button>
             }
         </div>
     </form>

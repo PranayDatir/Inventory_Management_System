@@ -11,22 +11,22 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
 
   getOrders() {
-    return this.http.get<Orders[]>(environment.apiUrl + "/orders");
+    return this.http.get(environment.apiUrl + "/order");
   }
 
   addOrder(order: Orders) {
-    return this.http.post<Orders>(environment.apiUrl + '/orders', order);
+    return this.http.post(environment.apiUrl + '/order', order);
   }
 
   getSingleOrder(id: string) {
-    return this.http.get(environment.apiUrl + '/orders/' + id);
+    return this.http.get(environment.apiUrl + '/order/' + id);
   }
 
-  updateProduct(id: string, order: Orders) {
-    return this.http.put<Orders>(environment.apiUrl + '/orders/' + id, order)
+  updateProduct(id: number, order: Orders) {
+    return this.http.put(environment.apiUrl + '/order/' + id, order)
   }
 
-  deleteOrder(id: string) {
-    return this.http.delete(environment.apiUrl + '/orders/' + id);
+  deleteOrder(id: number) {
+    return this.http.delete(environment.apiUrl + '/order/' + id);
   }
 }

@@ -67,9 +67,7 @@ public class ImsProductsController {
 	@GetMapping("/product/{id}")
 	public ResponseEntity<Response> getSingleProduct(@PathVariable int id){
 		try {
-			System.out.println(id);
 			Optional<Product> data = imsproductservice.getProduct(id);
-			System.out.println(data);
 			if(data.isEmpty()) {
 				Response response = new Response("Product Not Found", true, null);
 				return ResponseEntity.status(404).body(response);

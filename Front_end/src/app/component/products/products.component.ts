@@ -37,12 +37,7 @@ export class ProductsComponent implements OnInit {
       next: (response: ApiResponse<Products[]>)=>{
         console.log(response.data);
         this.initTable(response.data);
-      },
-      error: ()=>{
-
-      },
-      complete: ()=>{
-
+        this.toastr.showNotification(response.message, "Okay")
       }
     });
     }
@@ -51,13 +46,14 @@ export class ProductsComponent implements OnInit {
       this.brandservice.getBrand().subscribe({
         next: (response: ApiResponse<Brand[]>)=>{
           this.brands = response.data;
-        },
-        error: ()=>{
-
-        },
-        complete: ()=>{
-
         }
+        // ,
+        // error: ()=>{
+
+        // },
+        // complete: ()=>{
+
+        // }
       })
     }
   
@@ -77,5 +73,6 @@ export class ProductsComponent implements OnInit {
   deleteProduct(id : string){
     this.productService.deleteProduct(id).subscribe();
     window.location.reload();
+
   }
 }

@@ -30,8 +30,5 @@ public class Order {
 	private double totalAmount;
 	
 	private String productName;
-	
-//    @ManyToOne
-//    @JoinColumn
-//    private Product product;
+
 }

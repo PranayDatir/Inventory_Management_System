@@ -38,13 +38,14 @@ export class OrderComponent implements OnInit {
   getOrders(){
     this.orderService.getOrders().subscribe({
       next: (response: ApiResponse<Orders[]>) => {
-        this.initTable(response.data)
+        this.initTable(response.data);
+        this.toastr.showNotification(response.message,'Okay');
       },
       error: ()=>{
 
       },
       complete: ()=>{
-
+        
       }
     });
    }
@@ -61,7 +62,7 @@ export class OrderComponent implements OnInit {
         this.toastr.showNotification(response.message,'Okay');
         this.getOrders();
       }
-    });
+    }); 
 
   }
 }

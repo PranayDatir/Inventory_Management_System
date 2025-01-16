@@ -1,0 +1,29 @@
+.sidebar {
+    background-color: #ffe8aa;
+    width: 250px; 
+    height: 100vh; 
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .custom-selection-list .mat-list-item
+   {
+    color: rgb(222, 9, 9);
+    margin: 10px 0; 
+    padding: 10px; 
+    border-radius: 4px; 
+  }
+  
+  .custom-selection-list .mat-list-item:hover 
+  {
+    background-color: #5c6bc0;
+  }
+  
+
+  .custom-selection-list .active-link
+   {
+    background-color: #283593;
+    font-weight: bold;
+    color: white;
+  }
+  

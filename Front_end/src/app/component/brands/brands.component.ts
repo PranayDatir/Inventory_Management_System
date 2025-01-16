@@ -31,12 +31,6 @@ export class BrandsComponent implements OnInit{
       next: (response: ApiResponse<Brand[]>) => {
         this.toastr.showNotification(response.message,'Okay');
         this.initTable(response.data);
-    },
-    error: ()=>{
-
-    },
-    complete: ()=>{
-
     }
    });
   }
@@ -58,13 +52,11 @@ export class BrandsComponent implements OnInit{
   deleteData(id: number){
     this.brandservice.deleteBrand(id).subscribe({
       next: (response: ApiResponse<Brand>)=>{
-        this.toastr.showNotification(response.message,'Okay');
-       
+        this.toastr.showNotification(response.message,'Okay');       
       },
       complete: ()=>{
         this.getBrandData();
       }
     });
-  
   }
 }
